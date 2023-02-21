@@ -5,11 +5,15 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: jand187/hello-world-docker-action@v1
       - name: Hello world action step
+        uses: ./ # Uses an action in the root directory
         id: hello
-        uses: jand187/hello-world-docker-action@v2
         with:
-          who-to-greet: 'Hansemann Luchter'
+          who-to-greet: 'Røvbanen'
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
